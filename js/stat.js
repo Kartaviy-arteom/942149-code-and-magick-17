@@ -78,8 +78,8 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = 'hsl(240, ' + saturation + '%, 70%)';
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    };
-    ctx.fillRect(CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS)*i, CLOUD_Y + GAP_FIRST_LINE_Y + GAP_HISTOGRAM_Y + COLUMN_MAX_WIDTH * (1 - times[i]/maxTime), COLUMN_WIDTH, COLUMN_MAX_WIDTH * times[i]/maxTime);
+    }
+    ctx.fillRect(CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i, CLOUD_Y + GAP_FIRST_LINE_Y + GAP_HISTOGRAM_Y + COLUMN_MAX_WIDTH * (1 - times[i] / maxTime), COLUMN_WIDTH, COLUMN_MAX_WIDTH * times[i] / maxTime);
   };
   /* ctx.fillText('Вы', CLOUD_X + GAP_PLAYER_X, CLOUD_Y + GAP_PLAYER_Y);
   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
