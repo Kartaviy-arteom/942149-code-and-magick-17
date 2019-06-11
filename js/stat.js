@@ -11,7 +11,7 @@ var GAP_SECOND_LINE_Y = 40;
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.beginPath();
-  ctx.moveTo(x, y)
+  ctx.moveTo(x, y);
   ctx.lineTo(x + 20, y + 50);
   ctx.lineTo(x, y + 100);
   ctx.lineTo(x + 20, y + 140);
@@ -63,31 +63,31 @@ var renderColumn = function (ctx, names, times) {
   var COLUMN_MAX_HEIGHT = 150;
 
   for (var i = 0; i < names.length; i++) {
-    var playerTimeX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS)*i;
+    var playerTimeX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
     var playerTimeY = CLOUD_Y + GAP_PLAYER_TIME_Y;
-    var playerNameX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS)*i;
+    var playerNameX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
     var playerNameY = CLOUD_Y + GAP_PLAYER_Y;
-    var rectX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS)*i;
+    var rectX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
     var rectY = CLOUD_Y + GAP_FIRST_LINE_Y + GAP_HISTOGRAM_Y + COLUMN_MAX_HEIGHT;
-    var columnHeight = - COLUMN_MAX_HEIGHT * times[i]/maxTime;
+    var columnHeight = -COLUMN_MAX_HEIGHT * times[i] / maxTime;
 
     ctx.fillStyle = '#3f3f3f';
     ctx.fillText(Math.round(times[i]), playerTimeX, playerTimeY);
     ctx.fillText(names[i], playerNameX, playerNameY);
-    var saturation = Math.round(Math.random(1)*100);
+    var saturation = Math.round(Math.random(1) * 100);
     ctx.fillStyle = 'hsl(240, ' + saturation + '%, 70%)';
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    };
+    }
     ctx.fillRect(rectX, rectY, COLUMN_WIDTH, columnHeight);
-  };
-}
+  }
+};
 
-window.renderStatistics  = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   var shadowOffsetX = 10;
   var shadowOffsetY = 10;
 
-  renderCloud(ctx, CLOUD_X+shadowOffsetX, CLOUD_Y+shadowOffsetY, 'rgba(213, 213, 213, 0.7)');
+  renderCloud(ctx, CLOUD_X + shadowOffsetX, CLOUD_Y + shadowOffsetY, 'rgba(213, 213, 213, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#ffffff');
 
   ctx.fillStyle = '#3f3f3f';
