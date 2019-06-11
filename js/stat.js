@@ -49,7 +49,7 @@ var getMaxElement = function (array) {
     }
   }
   return maxElement;
-}ж
+};
 
 var renderColumn = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
