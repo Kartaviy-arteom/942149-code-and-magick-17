@@ -1,11 +1,18 @@
 'use strict';
 
-var CLOUD_X = 100;
-var CLOUD_Y = 10;
-var GAP_FIRST_LINE_X = 30;
-var GAP_FIRST_LINE_Y = 20;
-var GAP_SECOND_LINE_X = 130;
-var GAP_SECOND_LINE_Y = 40;
+(function () {
+var CLOUD = {
+  x: 100,
+  y: 10
+};
+var GAP_FIRST_LINE = {
+  x: 30,
+  y: 20
+};
+var GAP_SECOND_LINE = {
+  x: 130,
+  y: 40
+};
 
 
 var renderCloud = function (ctx, x, y, color) {
@@ -51,24 +58,26 @@ var getMaxElement = function (array) {
   return maxElement;
 };
 
-var renderColumn = function (ctx, names, times) {
+var renderColumns = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   var GAP_PLAYER_TIME_Y = 60;
   var GAP_HISTOGRAM_Y = 70;
-  var GAP_PLAYER_X = 30;
-  var GAP_PLAYER_Y = 245;
+  var GAP_PLAYER = {
+    x: 30,
+    y: 245
+  };
   var COLUMN_WIDTH = 40;
   var SPACE_BETWEEN_COLUMNS = 50;
   var COLUMN_MAX_HEIGHT = 150;
 
   for (var i = 0; i < names.length; i++) {
-    var playerTimeX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
-    var playerTimeY = CLOUD_Y + GAP_PLAYER_TIME_Y;
-    var playerNameX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
-    var playerNameY = CLOUD_Y + GAP_PLAYER_Y;
-    var rectX = CLOUD_X + GAP_PLAYER_X + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
-    var rectY = CLOUD_Y + GAP_FIRST_LINE_Y + GAP_HISTOGRAM_Y + COLUMN_MAX_HEIGHT;
+    var playerTimeX = CLOUD.x + GAP_PLAYER.x + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
+    var playerTimeY = CLOUD.y + GAP_PLAYER_TIME_Y;
+    var playerNameX = CLOUD.x + GAP_PLAYER.x + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
+    var playerNameY = CLOUD.y + GAP_PLAYER.y;
+    var rectX = CLOUD.x + GAP_PLAYER.x + (COLUMN_WIDTH + SPACE_BETWEEN_COLUMNS) * i;
+    var rectY = CLOUD.y + GAP_FIRST_LINE.y + GAP_HISTOGRAM_Y + COLUMN_MAX_HEIGHT;
     var columnHeight = -COLUMN_MAX_HEIGHT * times[i] / maxTime;
 
     ctx.fillStyle = '#3f3f3f';
@@ -84,17 +93,21 @@ var renderColumn = function (ctx, names, times) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  var shadowOffsetX = 10;
-  var shadowOffsetY = 10;
+  var shadowOffset = {
+    x: 10,
+    y: 10
+  }
 
-  renderCloud(ctx, CLOUD_X + shadowOffsetX, CLOUD_Y + shadowOffsetY, 'rgba(213, 213, 213, 0.7)');
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#ffffff');
+  renderCloud(ctx, CLOUD.x + shadowOffset.x, CLOUD.y + shadowOffset.y, 'rgba(213, 213, 213, 0.7)');
+  renderCloud(ctx, CLOUD.x, CLOUD.y, '#ffffff');
 
   ctx.fillStyle = '#3f3f3f';
   ctx.font = '16px Pt Mono';
   ctx.textBaseline = 'hanging';
-  ctx.fillText('Ура вы победили!', CLOUD_X + GAP_FIRST_LINE_X, CLOUD_Y + GAP_FIRST_LINE_Y);
-  ctx.fillText('Список результатов:', CLOUD_X + GAP_SECOND_LINE_X, CLOUD_Y + GAP_SECOND_LINE_Y);
+  ctx.fillText('Ура вы победили!', CLOUD.x + GAP_FIRST_LINE.x, CLOUD.y + GAP_FIRST_LINE.y);
+  ctx.fillText('Список результатов:', CLOUD.x + GAP_SECOND_LINE.x, CLOUD.y + GAP_SECOND_LINE.y);
 
-  renderColumn(ctx, names, times);
+  renderColumns(ctx, names, times);
 };
+
+})();
