@@ -96,7 +96,7 @@
     var shadowOffset = {
       x: 10,
       y: 10
-    }
+    };
 
     renderCloud(ctx, CLOUD.x + shadowOffset.x, CLOUD.y + shadowOffset.y, 'rgba(213, 213, 213, 0.7)');
     renderCloud(ctx, CLOUD.x, CLOUD.y, '#ffffff');
