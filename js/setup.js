@@ -8,12 +8,8 @@
   setupSimilar.classList.remove('hidden');
 
   var chooseRandomElement = function (arr) {
-    var randomElement = arr[Math.round(Math.random(1) * (arr.length -1))];
+    var randomElement = arr[Math.round(Math.random(1) * (arr.length - 1))];
     return randomElement;
-  };
-
-  var compareRandom = function(a, b) {
-    return Math.random() - 0.5;
   };
 
   var getWizardNames = function (names, surname) {
