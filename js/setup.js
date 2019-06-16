@@ -17,12 +17,11 @@
 
     for (var i = 0; i < names.length; i++) {
       wizardFullNames[i] = chooseRandomElement(names) + ' ' + chooseRandomElement(surname);
-      console.log(wizardFullNames[i]);
     }
     return wizardFullNames;
   };
 
-  var createWizards = function() {
+  var createWizards = function () {
     var wizards = [];
     var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
     var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
