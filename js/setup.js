@@ -53,7 +53,7 @@
 
   for (var i = 0; i < 4; i++) {
     renderWizard();
-  };
+  }
 
   similarListElement.appendChild(fragment);
 
