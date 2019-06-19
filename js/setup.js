@@ -57,9 +57,48 @@
 
   similarListElement.appendChild(fragment);
 
-  var setup = document.querySelector('.setup');
-  setup.classList.remove('hidden');
-
   var setupSimilar = document.querySelector('.setup-similar');
   setupSimilar.classList.remove('hidden');
+
+  //module4-task1
+  //begin
+
+  var setup = document.querySelector('.setup');
+  var setupOpen = document.querySelector('.setup-open');
+  var setupClose = setup.querySelector('.setup-close');
+
+  var onPopupEscPress = function(evt) {
+    if (evt.keyCode === 27) {
+      closePopup;
+    }
+  };
+
+  var openPopup = function (element) {
+    element.classList.remove('hidden');
+    document.addEventListener('keydown', onPopupEscPress);
+  };
+  var closePopup = function (element) {
+    element.classList.add('hidden');
+    document.removeEventListener('keydown', onPopupEscPress);
+  };
+
+  setupOpen.addEventListener('click', function(evt) {
+    openPopup(setup);
+  });
+
+  setupOpen.addEventListener('keydown', function(evt) {
+    if (evt.keyCode === 13) {
+      openPopup(setup);
+    }
+  })
+
+  setupClose.addEventListener('click', function(evt) {
+    closePopup(setup);
+  });
+
+  setupClose.addEventListener('keydown', function(evt) {
+    if (evt.keyCode === 13) {
+      closePopup(setup);
+    }
+  })
 })();
