@@ -62,43 +62,70 @@
 
   //module4-task1
   //begin
+  var ESC_KEYCODE = 27;
+  var ENTER_KEYCODE = 13;
 
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
+  var wizardCoat = setup.querySelector('.wizard-coat');
+  var wizardEyes = setup.querySelector('.wizard-eyes');
+  var fireball = setup.querySelector('.setup-fireball-wrap');
 
   var onPopupEscPress = function(evt) {
-    if (evt.keyCode === 27) {
-      closePopup;
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
     }
   };
 
-  var openPopup = function (element) {
-    element.classList.remove('hidden');
+  var openPopup = function() {
+    setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
-  };
-  var closePopup = function (element) {
-    element.classList.add('hidden');
-    document.removeEventListener('keydown', onPopupEscPress);
+    wizardCoat.addEventListener('click', changeCoat);
+    wizardEyes.addEventListener('click', changeEyes);
+    fireball.addEventListener('click', changeFireball);
   };
 
-  setupOpen.addEventListener('click', function(evt) {
-    openPopup(setup);
+  var closePopup = function() {
+    setup.classList.add('hidden');
+    document.removeEventListener('keydown', onPopupEscPress);
+    wizardCoat.removeEventListener('click', changeCoat);
+    wizardEyes.removeEventListener('click', changeEyes);
+    fireball.removeEventListener('click', changeFireball);
+  };
+
+  var changeCoat = function() {
+    var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+    wizardCoat.style.fill = coatColors[Math.floor(Math.random()*coatColors.length)];
+  };
+
+  var changeEyes = function() {
+    var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
+    wizardEyes.style.fill = eyesColors[Math.floor(Math.random()*eyesColors.length)];
+  };
+
+  var changeFireball = function() {
+    var fireballs = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+    fireball.style.backgroundColor = fireballs[Math.floor(Math.random()*eyesColors.length)];
+  };
+
+  setupOpen.addEventListener('click', function() {
+    openPopup();
   });
 
   setupOpen.addEventListener('keydown', function(evt) {
-    if (evt.keyCode === 13) {
-      openPopup(setup);
+    if (evt.keyCode === ENTER_KEYCODE) {
+      openPopup();
     }
-  })
+  });
 
-  setupClose.addEventListener('click', function(evt) {
-    closePopup(setup);
+  setupClose.addEventListener('click', function() {
+    closePopup();
   });
 
   setupClose.addEventListener('keydown', function(evt) {
-    if (evt.keyCode === 13) {
-      closePopup(setup);
+    if (evt.keyCode === ENTER_KEYCODE) {
+      closePopup();
     }
-  })
+  });
 })();
