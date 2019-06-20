@@ -104,7 +104,7 @@
     hiddenCoat.value = wizardCoat.style.fill;
   };
 
-  var onEyesPress = function() {
+  var onEyesPress = function () {
     wizardEyes.style.fill = eyesColors[Math.floor(Math.random() * eyesColors.length)];
     hiddenEyes.value = wizardEyes.style.fill;
   };
