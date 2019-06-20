@@ -60,7 +60,7 @@
   var setupSimilar = document.querySelector('.setup-similar');
   setupSimilar.classList.remove('hidden');
 
-  //module4-task1
+  // module4-task1
   var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
   var fireballs = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
@@ -77,13 +77,13 @@
   var hiddenEyes = setup.querySelector('input[name="eyes-color"]');
   var hiddenFireball = setup.querySelector('input[name="fireball-color"]');
 
-  var onPopupEscPress = function(evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
-    closePopup();
+  var onPopupEscPress = function (evt) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      closePopup();
     }
   };
 
-  var openPopup = function() {
+  var openPopup = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     wizardCoat.addEventListener('click', onCoatPress);
@@ -91,7 +91,7 @@
     fireball.addEventListener('click', onFireballPress);
   };
 
-  var closePopup = function() {
+  var closePopup = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
     wizardCoat.removeEventListener('click', onCoatPress);
@@ -99,38 +99,38 @@
     fireball.removeEventListener('click', onFireballPress);
   };
 
-  var onCoatPress = function() {
-    wizardCoat.style.fill = coatColors[Math.floor(Math.random()*coatColors.length)];
+  var onCoatPress = function () {
+    wizardCoat.style.fill = coatColors[Math.floor(Math.random() * coatColors.length)];
     hiddenCoat.value = wizardCoat.style.fill;
   };
 
   var onEyesPress = function() {
-    wizardEyes.style.fill = eyesColors[Math.floor(Math.random()*eyesColors.length)];
-    hiddenEyes.value  = wizardEyes.style.fill;
+    wizardEyes.style.fill = eyesColors[Math.floor(Math.random() * eyesColors.length)];
+    hiddenEyes.value = wizardEyes.style.fill;
   };
 
-  var onFireballPress = function() {
-    hiddenFireball.value = fireballs[Math.floor(Math.random()*fireballs.length)];
-    fireball.style.backgroundColor  = hiddenFireball.value;
+  var onFireballPress = function () {
+    hiddenFireball.value = fireballs[Math.floor(Math.random() * fireballs.length)];
+    fireball.style.backgroundColor = hiddenFireball.value;
     // Если fireball.style.backgroundColor = fireballs[Math.floor(Math.random()*fireballs.length)]
-    //Получаем цвет в rgb ???
+    // Получаем цвет в rgb ???
   };
 
-  setupOpen.addEventListener('click', function() {
+  setupOpen.addEventListener('click', function () {
     openPopup();
   });
 
-  setupOpen.addEventListener('keydown', function(evt) {
+  setupOpen.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
       openPopup();
     }
   });
 
-  setupClose.addEventListener('click', function() {
+  setupClose.addEventListener('click', function () {
     closePopup();
   });
 
-  setupClose.addEventListener('keydown', function(evt) {
+  setupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
       closePopup();
     }
