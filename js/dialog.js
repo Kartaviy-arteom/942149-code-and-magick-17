@@ -5,10 +5,10 @@
   var dialog = setup.querySelector('.upload');
   var artifactsShop = setup.querySelector('.setup-artifacts-shop');
 
-  artifactsShop.addEventListener('mousedown', function(evt) {
+  artifactsShop.addEventListener('mousedown', function (evt) {
     if (evt.target.localName === 'img') {
       var magicItem = evt.target;
-      magicItem.style.position = "absolute";
+      magicItem.style.position = 'absolute';
 
       var startСoordinates = {
         x: evt.clientX,
@@ -41,12 +41,12 @@
 
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
-    };
+    }
   });
 
   // Движение диалогового окна
 
-  dialog.addEventListener('mousedown', function(evt) {
+  dialog.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     var startСoordinates = {
@@ -82,7 +82,7 @@
       if (dragged) {
         var onClickPreventDefault = function (evt) {
           evt.preventDefault();
-          dialog.removeEventListener('click', onClickPreventDefault)
+          dialog.removeEventListener('click', onClickPreventDefault);
         };
         dialog.addEventListener('click', onClickPreventDefault);
       }
@@ -91,6 +91,6 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  })
+  });
 
 })();
