@@ -3,46 +3,45 @@
 (function () {
   var setup = document.querySelector('.setup');
   var dialog = setup.querySelector('.upload');
-  var inventoryItems = setup.querySelectorAll('.setup-artifacts-cell img[draggable="true"]');
+  var artifactsShop = setup.querySelector('.setup-artifacts-shop');
 
-  inventoryItems[0].style.position = "absolute";
-  inventoryItems[0].addEventListener('mousedown', function(evt) {
-    evt.preventDefault()
-    console.log(evt.target);
+  artifactsShop.addEventListener('mousedown', function(evt) {
+    if (evt.target.localName === 'img') {
+      var magicItem = evt.target;
+      magicItem.style.position = "absolute";
 
-    var startСoordinates = {
-      x: evt.clientX,
-      y: evt.clientY
-    };
-
-    var onMouseMove = function (moveEvt) {
-      moveEvt.preventDefault();
-
-
-      var shift = {
-        x: startСoordinates.x - moveEvt.clientX,
-        y: startСoordinates.y - moveEvt.clientY
+      var startСoordinates = {
+        x: evt.clientX,
+        y: evt.clientY
       };
 
-      startСoordinates = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+      var onMouseMove = function (moveEvt) {
+        moveEvt.preventDefault();
+
+
+        var shift = {
+          x: startСoordinates.x - moveEvt.clientX,
+          y: startСoordinates.y - moveEvt.clientY
+        };
+
+        startСoordinates = {
+          x: moveEvt.clientX,
+          y: moveEvt.clientY
+        };
+        magicItem.style.top = (magicItem.offsetTop - shift.y) + 'px';
+        magicItem.style.left = (magicItem.offsetLeft - shift.x) + 'px';
       };
 
+      var onMouseUp = function (upEvt) {
+        upEvt.preventDefault();
 
-      inventoryItems[0].style.top = (inventoryItems[0].offsetTop - shift.y) + 'px';
-      inventoryItems[0].style.left = (inventoryItems[0].offsetLeft - shift.x) + 'px';
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      };
+
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
     };
-
-    var onMouseUp = function (upEvt) {
-      upEvt.preventDefault();
-
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
   });
 
   // Движение диалогового окна
