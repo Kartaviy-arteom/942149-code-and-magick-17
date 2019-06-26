@@ -10,7 +10,7 @@
     var INVENORY_SIZES = {
       width: 260,
       height: 260,
-      cell : {
+      cell: {
         width: 65,
         height: 65
       }
@@ -69,15 +69,13 @@
           if (magicItem.getBoundingClientRect().top < inventoryCoordinates.y || magicItem.getBoundingClientRect().top > inventoryCoordinates.y + INVENORY_SIZES.height) {
             magicItem.style.left = (magicItem.offsetLeft - (magicItem.getBoundingClientRect().left - magicItemCoordinates.x)) + 'px';
             magicItem.style.top = (magicItem.offsetTop - (magicItem.getBoundingClientRect().top - magicItemCoordinates.y)) + 'px';
-          }
-
-          else {
+          } else {
             // выравнивание по x
-            var gapX = magicItem.getBoundingClientRect().left  - inventoryCoordinates.x;
+            var gapX = magicItem.getBoundingClientRect().left - inventoryCoordinates.x;
             var magicItemShiftX = gapX % INVENORY_SIZES.cell.width;
             magicItem.style.left = (magicItem.offsetLeft - magicItemShiftX) + 'px';
             // выравнивание по y
-            var gapY = magicItem.getBoundingClientRect().top  - inventoryCoordinates.y;
+            var gapY = magicItem.getBoundingClientRect().top - inventoryCoordinates.y;
             var magicItemShiftY = gapY % INVENORY_SIZES.cell.height;
             magicItem.style.top = (magicItem.offsetTop - magicItemShiftY) + 'px';
           }
