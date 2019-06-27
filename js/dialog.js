@@ -10,7 +10,7 @@
     var INVENORY_SIZES = {
       width: 260,
       height: 260,
-      cell : {
+      cell: {
         width: 65,
         height: 65
       }
@@ -66,10 +66,10 @@
           };
 
           var alignItem = function (item, dropLocationSizes, dropLocationCoords) {
-            var gapX = item.getBoundingClientRect().left  - dropLocationCoords.x;
+            var gapX = item.getBoundingClientRect().left - dropLocationCoords.x;
             var itemShiftX = gapX % dropLocationSizes.cell.width;
             item.style.left = (item.offsetLeft - itemShiftX) + 'px';
-            var gapY = item.getBoundingClientRect().top  - dropLocationCoords.y;
+            var gapY = item.getBoundingClientRect().top - dropLocationCoords.y;
             var itemShiftY = gapY % dropLocationSizes.cell.height;
             item.style.top = (item.offsetTop - itemShiftY) + 'px';
           };
@@ -80,7 +80,9 @@
             }
             if (item.getBoundingClientRect().top < targetCoords.y || item.getBoundingClientRect().top > targetCoords.y + targetSizes.height) {
               return false;
-            } else {return true};
+            } else {
+              return true;
+            };
           };
 
           if (checkHit(magicItem, inventoryCoordinates, INVENORY_SIZES)) {
