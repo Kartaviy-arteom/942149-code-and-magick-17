@@ -75,14 +75,14 @@
           };
 
           var checkHit = function (item, targetCoords, targetSizes) {
+            var result = true;
             if (item.getBoundingClientRect().left < targetCoords.x || item.getBoundingClientRect().left > targetCoords.x + targetSizes.width) {
-              return false;
+              result = false;
             }
             if (item.getBoundingClientRect().top < targetCoords.y || item.getBoundingClientRect().top > targetCoords.y + targetSizes.height) {
-              return false;
-            } else {
-              return true;
-            };
+              result = false;
+            }
+            return result;
           };
 
           if (checkHit(magicItem, inventoryCoordinates, INVENORY_SIZES)) {
