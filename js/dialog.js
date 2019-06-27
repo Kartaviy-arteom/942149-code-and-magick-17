@@ -86,9 +86,8 @@
           };
 
           if (checkHit(magicItem, inventoryCoordinates, INVENORY_SIZES)) {
-            alignItem(magicItem, INVENORY_SIZES, inventoryCoordinates);}
-
-          else {
+            alignItem(magicItem, INVENORY_SIZES, inventoryCoordinates);
+          } else {
             returnItem(magicItem, magicItemCoordinates);
           }
         };
