@@ -10,7 +10,7 @@
     var INVENORY_SIZES = {
       width: 260,
       height: 260,
-      cell: {
+      cell : {
         width: 65,
         height: 65
       }
@@ -59,25 +59,36 @@
 
           document.removeEventListener('mousemove', onMouseMove);
           document.removeEventListener('mouseup', onMouseUp);
-          // по оси х бросаем мимо инвенторя
-          if (magicItem.getBoundingClientRect().left < inventoryCoordinates.x || magicItem.getBoundingClientRect().left > inventoryCoordinates.x + INVENORY_SIZES.width) {
-            magicItem.style.left = (magicItem.offsetLeft - (magicItem.getBoundingClientRect().left - magicItemCoordinates.x)) + 'px';
-            magicItem.style.top = (magicItem.offsetTop - (magicItem.getBoundingClientRect().top - magicItemCoordinates.y)) + 'px';
-          }
-          // по оси y мимо инвенторя
 
-          if (magicItem.getBoundingClientRect().top < inventoryCoordinates.y || magicItem.getBoundingClientRect().top > inventoryCoordinates.y + INVENORY_SIZES.height) {
-            magicItem.style.left = (magicItem.offsetLeft - (magicItem.getBoundingClientRect().left - magicItemCoordinates.x)) + 'px';
-            magicItem.style.top = (magicItem.offsetTop - (magicItem.getBoundingClientRect().top - magicItemCoordinates.y)) + 'px';
-          } else {
-            // выравнивание по x
-            var gapX = magicItem.getBoundingClientRect().left - inventoryCoordinates.x;
-            var magicItemShiftX = gapX % INVENORY_SIZES.cell.width;
-            magicItem.style.left = (magicItem.offsetLeft - magicItemShiftX) + 'px';
-            // выравнивание по y
-            var gapY = magicItem.getBoundingClientRect().top - inventoryCoordinates.y;
-            var magicItemShiftY = gapY % INVENORY_SIZES.cell.height;
-            magicItem.style.top = (magicItem.offsetTop - magicItemShiftY) + 'px';
+          var returnItem = function (item, itemStartCoords) {
+            item.style.left = (item.offsetLeft - (item.getBoundingClientRect().left - itemStartCoords.x)) + 'px';
+            item.style.top = (item.offsetTop - (item.getBoundingClientRect().top - itemStartCoords.y)) + 'px';
+          };
+
+          var alignItem = function (item, dropLocationSizes, dropLocationCoords) {
+            var gapX = item.getBoundingClientRect().left  - dropLocationCoords.x;
+            var itemShiftX = gapX % dropLocationSizes.cell.width;
+            item.style.left = (item.offsetLeft - itemShiftX) + 'px';
+            var gapY = item.getBoundingClientRect().top  - dropLocationCoords.y;
+            var itemShiftY = gapY % dropLocationSizes.cell.height;
+            item.style.top = (item.offsetTop - itemShiftY) + 'px';
+          };
+
+          var checkHit = function (item, targetCoords, targetSizes) {
+            if (item.getBoundingClientRect().left < targetCoords.x || item.getBoundingClientRect().left > targetCoords.x + targetSizes.width) {
+              return false;
+            }
+            if (item.getBoundingClientRect().top < targetCoords.y || item.getBoundingClientRect().top > targetCoords.y + targetSizes.height) {
+              return false;
+            } else {return true};
+          };
+
+          if (checkHit(magicItem, inventoryCoordinates, INVENORY_SIZES)) {
+            alignItem(magicItem, INVENORY_SIZES, inventoryCoordinates);
+          }
+
+          else {
+            returnItem(magicItem, magicItemCoordinates);
           }
         };
         document.addEventListener('mousemove', onMouseMove);
