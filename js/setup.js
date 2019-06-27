@@ -80,10 +80,10 @@
     x: '50%',
     y: '80px'
   };
-  var cancelMovementSetup = function() {
+  var cancelMovementSetup = function () {
     setup.style.top = START_POSITION_SETUP.y;
     setup.style.left = START_POSITION_SETUP.x;
-  }
+  };
 
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
