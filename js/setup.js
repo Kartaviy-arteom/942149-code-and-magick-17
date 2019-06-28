@@ -76,6 +76,14 @@
   var hiddenCoat = setup.querySelector('input[name="coat-color"]');
   var hiddenEyes = setup.querySelector('input[name="eyes-color"]');
   var hiddenFireball = setup.querySelector('input[name="fireball-color"]');
+  var START_POSITION_SETUP = {
+    x: '50%',
+    y: '80px'
+  };
+  var cancelMovementSetup = function () {
+    setup.style.top = START_POSITION_SETUP.y;
+    setup.style.left = START_POSITION_SETUP.x;
+  };
 
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
@@ -84,6 +92,7 @@
   };
 
   var openPopup = function () {
+    cancelMovementSetup();
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     wizardCoat.addEventListener('click', onCoatPress);
