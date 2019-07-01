@@ -95,8 +95,61 @@
     }
   });
 
+// temporary code, move element
+  var moveElement = function (targetElement, movableElement, someFunction) {
+    targetElement.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    var startСoordinates = {
+      x: evt.clientX,
+      y: evt.clientY
+    };
+    var dragged = false;
+
+    var onMouseMove = function (moveEvt) {
+      moveEvt.preventDefault();
+
+      dragged = true;
+      var shift = {
+        x: startСoordinates.x - moveEvt.clientX,
+        y: startСoordinates.y - moveEvt.clientY
+      };
+
+      startСoordinates = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      movableElement.style.top = (movableElement.offsetTop - shift.y) + 'px';
+      movableElement.style.left = (movableElement.offsetLeft - shift.x) + 'px';
+    };
+
+    var onMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+
+      someFunction();
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    });
+  };
+
   // Движение диалогового окна
-  dialog.addEventListener('mousedown', function (evt) {
+  var isDraged = function () {
+    if (dragged) {
+      var onClickPreventDefault = function (clickEvt) {
+        clickEvt.preventDefault();
+        targetElement.removeEventListener('click', onClickPreventDefault);
+      };
+      targetElement.addEventListener('click', onClickPreventDefault);
+    }
+  };
+  moveElement(dialog, setup, isDraged);
+  /*dialog.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     var startСoordinates = {
@@ -141,5 +194,6 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
+  });*/
+
 })();
